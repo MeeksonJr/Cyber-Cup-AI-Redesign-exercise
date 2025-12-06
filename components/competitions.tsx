@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import { ArrowRight, Shield, Brain, Bot, Lock, Server, ChevronRight } from "lucide-react"
+import { ArrowRight, Shield, Brain, Bot, Lock, Server, ChevronRight, Users, Calendar, Clock } from "lucide-react"
 import Link from "next/link"
 
 const competitions = [
@@ -14,6 +14,9 @@ const competitions = [
     gradient: "from-[#043657] via-[#0a4a6e] to-[#043657]",
     accent: "#00b4d8",
     difficulty: "All Levels",
+    participants: "1,200+",
+    deadline: "March 15, 2025",
+    status: "Open",
   },
   {
     title: "LLM CTF Challenge",
@@ -23,6 +26,9 @@ const competitions = [
     gradient: "from-[#1a4b8c] via-[#043657] to-[#1a4b8c]",
     accent: "#98c5ea",
     difficulty: "Beginner",
+    participants: "850+",
+    deadline: "February 28, 2025",
+    status: "Open",
   },
   {
     title: "AI-Assisted CTF",
@@ -32,6 +38,9 @@ const competitions = [
     gradient: "from-[#043657] via-[#1a4b8c] to-[#043657]",
     accent: "#00f0ff",
     difficulty: "Advanced",
+    participants: "650+",
+    deadline: "April 1, 2025",
+    status: "Open",
   },
   {
     title: "LLM Backdoor Attack",
@@ -41,6 +50,9 @@ const competitions = [
     gradient: "from-[#0a4a6e] via-[#043657] to-[#0a4a6e]",
     accent: "#00b4d8",
     difficulty: "Advanced",
+    participants: "420+",
+    deadline: "March 20, 2025",
+    status: "Open",
   },
   {
     title: "MCP Security",
@@ -49,6 +61,9 @@ const competitions = [
     gradient: "from-[#043657] via-[#0a4a6e] to-[#043657]",
     accent: "#98c5ea",
     difficulty: "Expert",
+    participants: "280+",
+    deadline: "April 10, 2025",
+    status: "Open",
   },
 ]
 
@@ -109,19 +124,38 @@ function CompetitionCard({
           >
             <competition.icon className="w-6 h-6" style={{ color: competition.accent }} />
           </motion.div>
-          <span
-            className="text-xs font-medium px-3 py-1 rounded-full"
-            style={{
-              backgroundColor: `${competition.accent}20`,
-              color: competition.accent,
-            }}
-          >
-            {competition.difficulty}
-          </span>
+          <div className="flex flex-col items-end gap-2">
+            <span
+              className="text-xs font-medium px-3 py-1 rounded-full"
+              style={{
+                backgroundColor: `${competition.accent}20`,
+                color: competition.accent,
+              }}
+            >
+              {competition.difficulty}
+            </span>
+            <span
+              className="text-xs font-semibold px-2 py-1 rounded-full bg-green-500/20 text-green-400 border border-green-500/30"
+            >
+              {competition.status}
+            </span>
+          </div>
         </div>
 
         <h3 className="font-display text-xl md:text-2xl font-bold text-white mb-3">{competition.title}</h3>
-        <p className="text-[#98c5ea]/80 leading-relaxed flex-grow text-sm md:text-base">{competition.description}</p>
+        <p className="text-[#98c5ea]/80 leading-relaxed flex-grow text-sm md:text-base mb-4">{competition.description}</p>
+
+        {/* Additional Information */}
+        <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-white/10">
+          <div className="flex items-center gap-2 text-xs text-[#98c5ea]/70">
+            <Users className="w-4 h-4" style={{ color: competition.accent }} />
+            <span>{competition.participants}</span>
+          </div>
+          <div className="flex items-center gap-2 text-xs text-[#98c5ea]/70">
+            <Calendar className="w-4 h-4" style={{ color: competition.accent }} />
+            <span>Reg: {competition.deadline}</span>
+          </div>
+        </div>
 
         <motion.div
           animate={{ x: isHovered ? 5 : 0 }}
@@ -169,9 +203,12 @@ export function Competitions() {
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             Competition <span className="text-[#00b4d8]">Tracks</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#00b4d8] to-[#00f0ff] mx-auto rounded-full mb-6" />
-          <p className="text-lg text-[#98c5ea] max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-[#00b4d8] to-[#00f0ff] mx-auto rounded-full mb-4" />
+          <p className="text-lg text-[#98c5ea] max-w-2xl mx-auto mb-2">
             Choose your arena and prove your skills across our distinct cybersecurity challenges.
+          </p>
+          <p className="text-sm text-[#828a8f] max-w-xl mx-auto italic">
+            Forward-Focused: Shaping tomorrow's cybersecurity solutions today
           </p>
         </motion.div>
 

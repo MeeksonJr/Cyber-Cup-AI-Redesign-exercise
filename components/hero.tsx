@@ -104,10 +104,23 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl md:text-2xl text-[#98c5ea] font-medium mb-4"
+            className="text-xl md:text-2xl text-[#98c5ea] font-medium mb-2"
           >
             Cyber AI Competition Unified Platform (CUP)
           </motion.p>
+
+          {/* Forward-Focused tagline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.45 }}
+            className="mb-4"
+          >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#043657]/30 border border-[#98c5ea]/30 text-[#98c5ea] text-sm font-semibold uppercase tracking-wider">
+              <ArrowRight className="w-4 h-4" />
+              Forward-Focused
+            </span>
+          </motion.div>
 
           {/* Updated description */}
           <motion.p
@@ -117,7 +130,7 @@ export function Hero() {
             className="text-lg text-[#828a8f] max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             Empowering the next generation of CyberAI professionals through innovative competitions and hands-on
-            learning experiences.
+            learning experiences. Shaping tomorrow's solutions today.
           </motion.p>
 
           {/* Stats */}
@@ -154,7 +167,7 @@ export function Hero() {
             <Link href="#competitions">
               <Button
                 size="lg"
-                className="bg-[#00b4d8] hover:bg-[#00d4ff] text-[#021a2b] px-8 py-6 text-lg font-bold rounded-lg shadow-lg shadow-[#00b4d8]/25 hover:shadow-[#00b4d8]/50 transition-all group"
+                className="px-8 py-6 text-lg font-bold shadow-lg shadow-[#043657]/25 hover:shadow-[#043657]/50 transition-all group"
               >
                 Explore Competitions
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -163,27 +176,35 @@ export function Hero() {
             <Link href="#about">
               <Button
                 size="lg"
-                variant="outline"
-                className="border-[#00b4d8]/50 text-[#98c5ea] hover:bg-[#043657]/50 hover:text-white px-8 py-6 text-lg font-semibold rounded-lg bg-transparent"
+                variant="secondary"
+                className="px-8 py-6 text-lg font-semibold"
               >
                 Learn More
               </Button>
             </Link>
           </motion.div>
 
-          {/* Hosted by badge */}
+          {/* Hosted by badge - Enhanced ODU branding */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
-            className="mt-16 flex items-center justify-center gap-4"
+            className="mt-16 flex flex-col items-center justify-center gap-4"
           >
-            <span className="text-sm text-[#828a8f] uppercase tracking-wider">Hosted by</span>
-            <img
-              src="https://cybercup.ai/_astro/odu-cs-logo.BdiMY8SH_1eMPNU.webp"
-              alt="ODU School of Cybersecurity"
-              className="h-12 object-contain brightness-0 invert opacity-70"
-            />
+            <div className="flex items-center justify-center gap-4">
+              <span className="text-sm text-[#828a8f] uppercase tracking-wider">Hosted by</span>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#043657]/30 border border-[#98c5ea]/20">
+                <img
+                  src="https://cybercup.ai/_astro/odu-cs-logo.BdiMY8SH_1eMPNU.webp"
+                  alt="ODU School of Cybersecurity"
+                  className="h-10 object-contain brightness-0 invert opacity-90"
+                />
+                <span className="text-sm text-[#98c5ea] font-medium">ODU School of Cybersecurity</span>
+              </div>
+            </div>
+            <p className="text-xs text-[#828a8f] max-w-md text-center">
+              Old Dominion University - Leading innovation in cybersecurity education and research
+            </p>
           </motion.div>
         </div>
       </motion.div>

@@ -2,7 +2,7 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { BookOpen, Users, Award, Target } from "lucide-react"
+import { BookOpen, Users, Award, Target, TrendingUp, Zap } from "lucide-react"
 
 const competitions = [
   { name: "CTF", knowledge: "Familiarity with traditional CTFs", level: "Intermediate" },
@@ -59,29 +59,52 @@ export function About() {
           <div className="w-24 h-1 bg-gradient-to-r from-[#00b4d8] to-[#00f0ff] mx-auto rounded-full" />
         </motion.div>
 
-        {/* Feature cards */}
+        {/* Feature cards with progress indicators */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-20"
         >
-          {features.map((feature, index) => (
-            <motion.div
-              key={feature.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              whileHover={{ y: -5, scale: 1.02 }}
-              className="glow-card rounded-xl bg-[#043657]/40 backdrop-blur-sm border border-[#00b4d8]/10 p-6 text-center"
-            >
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#00b4d8]/10 mb-4">
-                <feature.icon className="w-6 h-6 text-[#00b4d8]" />
-              </div>
-              <h3 className="font-display font-bold text-white text-lg mb-2">{feature.title}</h3>
-              <p className="text-[#828a8f] text-sm leading-relaxed">{feature.description}</p>
-            </motion.div>
-          ))}
+          {features.map((feature, index) => {
+            // Simulated progress values for gamification
+            const progressValues = [85, 72, 68, 90]
+            const progress = progressValues[index] || 75
+            
+            return (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="glow-card rounded-xl bg-[#043657]/40 backdrop-blur-sm border border-[#00b4d8]/10 p-6 text-center relative overflow-hidden"
+              >
+                {/* Progress badge */}
+                <div className="absolute top-2 right-2">
+                  <div className="w-8 h-8 rounded-full bg-[#00b4d8]/20 border border-[#00b4d8]/40 flex items-center justify-center">
+                    <span className="text-xs font-bold text-[#00b4d8]">{progress}%</span>
+                  </div>
+                </div>
+                
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#00b4d8]/10 mb-4">
+                  <feature.icon className="w-6 h-6 text-[#00b4d8]" />
+                </div>
+                <h3 className="font-display font-bold text-white text-lg mb-2">{feature.title}</h3>
+                <p className="text-[#828a8f] text-sm leading-relaxed mb-3">{feature.description}</p>
+                
+                {/* Progress bar */}
+                <div className="w-full h-1.5 bg-[#043657]/50 rounded-full overflow-hidden">
+                  <motion.div
+                    initial={{ width: 0 }}
+                    animate={isInView ? { width: `${progress}%` } : {}}
+                    transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
+                    className="h-full bg-gradient-to-r from-[#00b4d8] to-[#98c5ea] rounded-full"
+                  />
+                </div>
+              </motion.div>
+            )
+          })}
         </motion.div>
 
         {/* Content grid */}
@@ -94,18 +117,40 @@ export function About() {
             className="space-y-6"
           >
             <div className="glow-card rounded-2xl bg-[#043657]/30 backdrop-blur-sm border border-[#00b4d8]/10 p-8">
+              {/* Forward-Focused badge */}
+              <div className="flex items-center gap-2 mb-4">
+                <Zap className="w-5 h-5 text-[#00b4d8]" />
+                <span className="text-sm font-semibold text-[#98c5ea] uppercase tracking-wider">Forward-Focused</span>
+              </div>
+              
               <p className="text-lg text-white leading-relaxed mb-6">
                 <span className="font-bold text-[#00b4d8]">Cyber AI Competition Unified Platform</span> (CyberCup.AI) is
                 an innovative platform designed and developed at the School of Cybersecurity, Old Dominion University
                 (ODU). CyberCup serves as a unified hub for hosting a diverse range of competitions at the intersection
                 of Cybersecurity and Artificial Intelligence (AI).
               </p>
-              <p className="text-[#98c5ea] leading-relaxed">
+              <p className="text-[#98c5ea] leading-relaxed mb-4">
                 In this year's competitions, we have challenges related to security of Large language models (LLM),
                 Model Context Protocol (MCP) and use of AI in Capture the Flag (CTF) competitions. Participants can
                 engage in a variety of challenges including LLM CTF, AI-Assisted CTF, LLM Backdoor attacks, and MCP
                 security.
               </p>
+              
+              {/* Achievement stats */}
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#00b4d8]/20">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#00b4d8] mb-1">3,400+</div>
+                  <div className="text-xs text-[#828a8f]">Participants</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#00b4d8] mb-1">5</div>
+                  <div className="text-xs text-[#828a8f]">Tracks</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-[#00b4d8] mb-1">100+</div>
+                  <div className="text-xs text-[#828a8f]">Challenges</div>
+                </div>
+              </div>
             </div>
           </motion.div>
 
