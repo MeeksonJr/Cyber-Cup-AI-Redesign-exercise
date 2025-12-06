@@ -74,19 +74,19 @@ export function Hero() {
         transition={{ duration: 0.6 }}
         className="group relative"
       >
-        <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-[#98C5EA]/20 hover:border-[#00b4d8]/40 transition-all duration-300 hover:bg-white/10">
-          <div className="p-3 rounded-lg bg-gradient-to-br from-[#043657] to-[#1a4b8c] border border-[#00b4d8]/30">
-            <Icon className="w-5 h-5 text-[#98C5EA]" />
+        <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-hudson/20 hover:border-teal/40 transition-all duration-300 hover:bg-white/10">
+          <div className="p-3 rounded-lg bg-gradient-to-br from-monarch to-ultramarine border border-teal/30">
+            <Icon className="w-5 h-5 text-hudson" />
           </div>
           <div className="text-left">
             <div className="text-2xl md:text-3xl font-bold text-white font-display">
               {value.includes("+") ? `${count.toLocaleString()}+` : value}
             </div>
-            <div className="text-xs md:text-sm text-[#828a8f]">{label}</div>
+            <div className="text-xs md:text-sm text-silver">{label}</div>
           </div>
         </div>
         {/* Glow effect on hover */}
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#00b4d8]/0 via-[#00b4d8]/10 to-[#00b4d8]/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10" />
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-teal/0 via-teal/10 to-teal/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10" />
       </motion.div>
     )
   }
@@ -95,7 +95,7 @@ export function Hero() {
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#043657] via-[#021a2b] to-[#011018]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-monarch via-deep to-[#011018]"
       onMouseMove={(e) => {
         if (!containerRef.current) return
         const rect = containerRef.current.getBoundingClientRect()
@@ -110,14 +110,14 @@ export function Hero() {
             x: useTransform(mouseXSpring, [-0.5, 0.5], [-100, 100]),
             y: useTransform(mouseYSpring, [-0.5, 0.5], [-100, 100]),
           }}
-          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-[#00b4d8]/20 via-[#98C5EA]/10 to-[#043657]/30 rounded-full blur-[120px]"
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-teal/20 via-hudson/10 to-monarch/30 rounded-full blur-[120px]"
         />
         <motion.div
           style={{
             x: useTransform(mouseXSpring, [-0.5, 0.5], [100, -100]),
             y: useTransform(mouseYSpring, [-0.5, 0.5], [100, -100]),
           }}
-          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-[#1a4b8c]/20 via-[#00b4d8]/10 to-[#98C5EA]/20 rounded-full blur-[100px]"
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-ultramarine/20 via-teal/10 to-hudson/20 rounded-full blur-[100px]"
         />
       </div>
 
@@ -176,14 +176,14 @@ export function Hero() {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.6, type: "spring" }}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#043657]/80 to-[#1a4b8c]/80 backdrop-blur-md border border-[#00b4d8]/40 mb-8 shadow-lg shadow-[#00b4d8]/20"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-monarch/80 to-ultramarine/80 backdrop-blur-md border border-teal/40 mb-8 shadow-lg shadow-teal/20"
           >
             <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00f0ff] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00b4d8]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyber opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-teal"></span>
             </span>
-            <span className="text-[#98c5ea] text-sm font-semibold">2025 Competition Season Now Open</span>
-            <Sparkles className="w-4 h-4 text-[#00b4d8]" />
+            <span className="text-hudson text-sm font-semibold">2025 Competition Season Now Open</span>
+            <Sparkles className="w-4 h-4 text-teal" />
           </motion.div>
 
           {/* Main Title with gradient text and glow */}
@@ -195,7 +195,7 @@ export function Hero() {
           >
             <span className="block">
               <motion.span
-                className="inline-block bg-gradient-to-r from-white via-[#98C5EA] to-white bg-clip-text text-transparent"
+                className="inline-block bg-gradient-to-r from-white via-hudson to-white bg-clip-text text-transparent"
                 animate={{
                   backgroundPosition: ["0%", "100%", "0%"],
                 }}
@@ -211,7 +211,7 @@ export function Hero() {
                 CYBER
               </motion.span>
               <motion.span
-                className="inline-block bg-gradient-to-r from-[#00b4d8] via-[#00f0ff] to-[#00b4d8] bg-clip-text text-transparent ml-2"
+                className="inline-block bg-gradient-to-r from-teal via-cyber to-teal bg-clip-text text-transparent ml-2"
                 animate={{
                   filter: [
                     "drop-shadow(0 0 10px rgba(0, 180, 216, 0.5))",
@@ -228,7 +228,7 @@ export function Hero() {
                 CUP
               </motion.span>
               <motion.span
-                className="inline-block text-[#00f0ff] ml-2"
+                className="inline-block text-cyber ml-2"
                 animate={{
                   filter: [
                     "drop-shadow(0 0 5px rgba(0, 240, 255, 0.5))",
@@ -252,7 +252,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#98c5ea] font-semibold mb-3 px-4"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-hudson font-semibold mb-3 px-4"
           >
             Cyber AI Competition Unified Platform
           </motion.p>
@@ -265,7 +265,7 @@ export function Hero() {
             className="mb-6"
           >
             <motion.span
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#043657]/40 to-[#1a4b8c]/40 backdrop-blur-md border border-[#98c5ea]/40 text-[#98c5ea] text-sm font-bold uppercase tracking-wider"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-monarch/40 to-ultramarine/40 backdrop-blur-md border border-hudson/40 text-hudson text-sm font-bold uppercase tracking-wider"
               whileHover={{ scale: 1.05, borderColor: "#00b4d8" }}
               transition={{ type: "spring", stiffness: 400 }}
             >
@@ -284,10 +284,10 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="text-lg md:text-xl text-[#828a8f] max-w-3xl mx-auto mb-12 leading-relaxed"
+            className="text-lg md:text-xl text-silver max-w-3xl mx-auto mb-12 leading-relaxed"
           >
             Empowering the next generation of CyberAI professionals through innovative competitions and hands-on
-            learning experiences. <span className="text-[#98c5ea] font-semibold">Shaping tomorrow's solutions today.</span>
+            learning experiences. <span className="text-hudson font-semibold">Shaping tomorrow's solutions today.</span>
           </motion.p>
 
           {/* Animated Stats Grid */}
@@ -313,7 +313,7 @@ export function Hero() {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button
                   size="lg"
-                  className="px-10 py-7 text-lg font-bold shadow-2xl shadow-[#043657]/50 hover:shadow-[#00b4d8]/30 transition-all group relative overflow-hidden focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                  className="px-10 py-7 text-lg font-bold shadow-2xl shadow-monarch/50 hover:shadow-teal/30 transition-all group relative overflow-hidden focus:ring-2 focus:ring-teal focus:ring-offset-2"
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     Explore Competitions
@@ -326,7 +326,7 @@ export function Hero() {
                     </motion.div>
                   </span>
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-r from-[#1a4b8c] to-[#00b4d8] opacity-0 group-hover:opacity-100 transition-opacity"
+                    className="absolute inset-0 bg-gradient-to-r from-ultramarine to-teal opacity-0 group-hover:opacity-100 transition-opacity"
                     initial={false}
                     aria-hidden="true"
                   />
@@ -338,7 +338,7 @@ export function Hero() {
                 <Button
                   size="lg"
                   variant="secondary"
-                  className="px-10 py-7 text-lg font-semibold border-2 focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                  className="px-10 py-7 text-lg font-semibold border-2 focus:ring-2 focus:ring-teal focus:ring-offset-2"
                 >
                   Learn More
                 </Button>
@@ -354,9 +354,9 @@ export function Hero() {
             className="flex flex-col items-center justify-center gap-4"
           >
             <div className="flex items-center justify-center gap-4">
-              <span className="text-sm text-[#828a8f] uppercase tracking-wider font-medium">Hosted by</span>
+              <span className="text-sm text-silver uppercase tracking-wider font-medium">Hosted by</span>
               <motion.div
-                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-r from-[#043657]/40 to-[#1a4b8c]/40 backdrop-blur-md border border-[#98c5ea]/30 shadow-lg"
+                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-r from-monarch/40 to-ultramarine/40 backdrop-blur-md border border-hudson/30 shadow-lg"
                 whileHover={{ scale: 1.05, borderColor: "#00b4d8" }}
                 transition={{ type: "spring", stiffness: 400 }}
               >
@@ -368,10 +368,10 @@ export function Hero() {
                   width="48"
                   height="48"
                 />
-                <span className="text-sm text-[#98c5ea] font-semibold">ODU School of Cybersecurity</span>
+                <span className="text-sm text-hudson font-semibold">ODU School of Cybersecurity</span>
               </motion.div>
             </div>
-            <p className="text-xs text-[#828a8f] max-w-md text-center leading-relaxed">
+            <p className="text-xs text-silver max-w-md text-center leading-relaxed">
               Old Dominion University - Leading innovation in cybersecurity education and research
             </p>
           </motion.div>
@@ -379,7 +379,7 @@ export function Hero() {
       </motion.div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#011018] via-[#021a2b]/50 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#011018] via-deep/50 to-transparent pointer-events-none" />
 
       {/* Enhanced scroll indicator */}
       <motion.div
@@ -391,12 +391,12 @@ export function Hero() {
         <motion.div
           animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-          className="w-7 h-12 rounded-full border-2 border-[#00b4d8]/60 flex justify-center pt-3 backdrop-blur-sm bg-[#043657]/20"
+          className="w-7 h-12 rounded-full border-2 border-teal/60 flex justify-center pt-3 backdrop-blur-sm bg-monarch/20"
         >
           <motion.div
             animate={{ opacity: [0.3, 1, 0.3], y: [0, 4, 0] }}
             transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-            className="w-1.5 h-3 bg-[#00b4d8] rounded-full"
+            className="w-1.5 h-3 bg-teal rounded-full"
           />
         </motion.div>
       </motion.div>

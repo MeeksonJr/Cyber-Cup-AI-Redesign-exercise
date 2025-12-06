@@ -21,7 +21,7 @@ export function Footer() {
   return (
     <footer className="bg-[#011018] relative overflow-hidden">
       {/* Top border gradient */}
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00b4d8]/50 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal/50 to-transparent" />
 
       {/* Background grid */}
       <div className="absolute inset-0 cyber-grid opacity-10" />
@@ -38,16 +38,16 @@ export function Footer() {
             className="md:col-span-2"
           >
             <Link href="#home" className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#00b4d8] to-[#043657] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal to-monarch flex items-center justify-center">
                 <Terminal className="w-5 h-5 text-white" />
               </div>
               <span className="font-display font-bold text-2xl">
                 <span className="text-white">CYBER</span>
-                <span className="text-[#00b4d8]">CUP</span>
-                <span className="text-[#00f0ff]">.AI</span>
+                <span className="text-teal">CUP</span>
+                <span className="text-cyber">.AI</span>
               </span>
             </Link>
-            <p className="text-[#828a8f] max-w-md leading-relaxed mb-6">
+            <p className="text-silver max-w-md leading-relaxed mb-6">
               Empowering the next generation of CyberAI professionals through innovative competitions and hands-on
               learning experiences.
             </p>
@@ -57,7 +57,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 rounded-lg bg-[#043657]/50 border border-[#00b4d8]/20 flex items-center justify-center text-[#98c5ea] hover:text-[#00b4d8] hover:border-[#00b4d8]/50 transition-all focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                className="w-10 h-10 rounded-lg bg-monarch/50 border border-teal/20 flex items-center justify-center text-hudson hover:text-teal hover:border-teal/50 transition-all focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
                 aria-label="Follow ODU Cybersecurity on Instagram"
               >
                 <Instagram className="w-5 h-5" />
@@ -67,7 +67,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 rounded-lg bg-[#043657]/50 border border-[#00b4d8]/20 flex items-center justify-center text-[#98c5ea] hover:text-[#00b4d8] hover:border-[#00b4d8]/50 transition-all focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                className="w-10 h-10 rounded-lg bg-monarch/50 border border-teal/20 flex items-center justify-center text-hudson hover:text-teal hover:border-teal/50 transition-all focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
                 aria-label="Follow ODU School of Cybersecurity on LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
@@ -88,7 +88,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-[#828a8f] hover:text-[#00b4d8] transition-colors inline-flex items-center gap-1"
+                    className="text-silver hover:text-teal transition-colors inline-flex items-center gap-1"
                   >
                     {link.name}
                   </Link>
@@ -109,13 +109,13 @@ export function Footer() {
               <li>
                 <a
                   href="mailto:cybercup@odu.edu"
-                  className="text-[#828a8f] hover:text-[#00b4d8] transition-colors inline-flex items-center gap-2"
+                  className="text-silver hover:text-teal transition-colors inline-flex items-center gap-2"
                 >
                   <Mail className="w-4 h-4" />
                   cybercup@odu.edu
                 </a>
               </li>
-              <li className="text-[#828a8f] inline-flex items-center gap-2">
+              <li className="text-silver inline-flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 Norfolk, Virginia
               </li>
@@ -139,16 +139,16 @@ export function Footer() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
-          className="pt-8 border-t border-[#00b4d8]/10"
+          className="pt-8 border-t border-teal/10"
         >
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-[#828a8f] text-sm">© {new Date().getFullYear()} CyberCup.AI. All rights reserved.</p>
+            <p className="text-silver text-sm">© {new Date().getFullYear()} CyberCup.AI. All rights reserved.</p>
             <div className="flex items-center gap-6">
               {footerLinks.map((link) => (
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-[#828a8f] hover:text-[#00b4d8] text-sm transition-colors"
+                  className="text-silver hover:text-teal text-sm transition-colors"
                 >
                   {link.name}
                 </Link>

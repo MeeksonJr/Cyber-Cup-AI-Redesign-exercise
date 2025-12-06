@@ -143,15 +143,15 @@ function CompetitionCard({
         </div>
 
         <h3 className="font-display text-xl md:text-2xl font-bold text-white mb-3">{competition.title}</h3>
-        <p className="text-[#98c5ea]/80 leading-relaxed flex-grow text-sm md:text-base mb-4">{competition.description}</p>
+        <p className="text-hudson/80 leading-relaxed grow text-sm md:text-base mb-4">{competition.description}</p>
 
         {/* Additional Information */}
         <div className="flex flex-wrap gap-3 mt-auto pt-4 border-t border-white/10">
-          <div className="flex items-center gap-2 text-xs text-[#98c5ea]/70">
+          <div className="flex items-center gap-2 text-xs text-hudson/70">
             <Users className="w-4 h-4" style={{ color: competition.accent }} />
             <span>{competition.participants}</span>
           </div>
-          <div className="flex items-center gap-2 text-xs text-[#98c5ea]/70">
+          <div className="flex items-center gap-2 text-xs text-hudson/70">
             <Calendar className="w-4 h-4" style={{ color: competition.accent }} />
             <span>Reg: {competition.deadline}</span>
           </div>
@@ -190,7 +190,7 @@ export function Competitions() {
     <section id="competitions" className="py-24 md:py-32 bg-[#011018] relative overflow-hidden" ref={ref}>
       {/* Background */}
       <div className="absolute inset-0 cyber-grid opacity-10" />
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00b4d8]/30 to-transparent" />
+            <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal/30 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -201,13 +201,13 @@ export function Competitions() {
           className="text-center mb-16"
         >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Competition <span className="text-[#00b4d8]">Tracks</span>
+            Competition <span className="text-teal">Tracks</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#00b4d8] to-[#00f0ff] mx-auto rounded-full mb-4" />
-          <p className="text-lg text-[#98c5ea] max-w-2xl mx-auto mb-2">
+          <div className="w-24 h-1 bg-gradient-to-r from-teal to-cyber mx-auto rounded-full mb-4" />
+          <p className="text-lg text-hudson max-w-2xl mx-auto mb-2">
             Choose your arena and prove your skills across our distinct cybersecurity challenges.
           </p>
-          <p className="text-sm text-[#828a8f] max-w-xl mx-auto italic">
+          <p className="text-sm text-silver max-w-xl mx-auto italic">
             Forward-Focused: Shaping tomorrow's cybersecurity solutions today
           </p>
         </motion.div>
@@ -230,7 +230,7 @@ export function Competitions() {
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center gap-2 bg-transparent border-2 border-[#00b4d8] text-[#00b4d8] hover:bg-[#00b4d8] hover:text-[#021a2b] px-8 py-4 rounded-lg font-semibold transition-all"
+              className="inline-flex items-center gap-2 bg-transparent border-2 border-teal text-teal hover:bg-teal hover:text-deep px-8 py-4 rounded-lg font-semibold transition-all"
             >
               Register for Competitions
               <ArrowRight className="w-5 h-5" />

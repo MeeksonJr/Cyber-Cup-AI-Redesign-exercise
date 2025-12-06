@@ -40,10 +40,10 @@ export function About() {
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="about" className="py-24 md:py-32 bg-[#021a2b] relative overflow-hidden" ref={ref}>
+    <section id="about" className="py-24 md:py-32 bg-deep relative overflow-hidden" ref={ref}>
       {/* Background elements */}
       <div className="absolute inset-0 cyber-grid opacity-20" />
-      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-[#00b4d8]/50 to-transparent" />
+      <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal/50 to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -54,9 +54,9 @@ export function About() {
           className="text-center mb-20"
         >
           <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            About <span className="text-[#00b4d8]">CyberCup.AI</span>
+            About <span className="text-teal">CyberCup.AI</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#00b4d8] to-[#00f0ff] mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-teal to-cyber mx-auto rounded-full" />
         </motion.div>
 
         {/* Feature cards with progress indicators */}
@@ -78,28 +78,28 @@ export function About() {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 whileHover={{ y: -5, scale: 1.02 }}
-                className="glow-card rounded-xl bg-[#043657]/40 backdrop-blur-sm border border-[#00b4d8]/10 p-6 text-center relative overflow-hidden"
+                className="glow-card rounded-xl bg-monarch/40 backdrop-blur-sm border border-teal/10 p-6 text-center relative overflow-hidden"
               >
                 {/* Progress badge */}
                 <div className="absolute top-2 right-2">
-                  <div className="w-8 h-8 rounded-full bg-[#00b4d8]/20 border border-[#00b4d8]/40 flex items-center justify-center">
-                    <span className="text-xs font-bold text-[#00b4d8]">{progress}%</span>
+                  <div className="w-8 h-8 rounded-full bg-teal/20 border border-teal/40 flex items-center justify-center">
+                    <span className="text-xs font-bold text-teal">{progress}%</span>
                   </div>
                 </div>
                 
-                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#00b4d8]/10 mb-4">
-                  <feature.icon className="w-6 h-6 text-[#00b4d8]" />
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-teal/10 mb-4">
+                  <feature.icon className="w-6 h-6 text-teal" />
                 </div>
                 <h3 className="font-display font-bold text-white text-lg mb-2">{feature.title}</h3>
-                <p className="text-[#828a8f] text-sm leading-relaxed mb-3">{feature.description}</p>
+                <p className="text-silver text-sm leading-relaxed mb-3">{feature.description}</p>
                 
                 {/* Progress bar */}
-                <div className="w-full h-1.5 bg-[#043657]/50 rounded-full overflow-hidden">
+                <div className="w-full h-1.5 bg-monarch/50 rounded-full overflow-hidden">
                   <motion.div
                     initial={{ width: 0 }}
                     animate={isInView ? { width: `${progress}%` } : {}}
                     transition={{ duration: 1, delay: 0.5 + index * 0.1 }}
-                    className="h-full bg-gradient-to-r from-[#00b4d8] to-[#98c5ea] rounded-full"
+                    className="h-full bg-gradient-to-r from-teal to-hudson rounded-full"
                   />
                 </div>
               </motion.div>
@@ -116,20 +116,20 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="space-y-6"
           >
-            <div className="glow-card rounded-2xl bg-[#043657]/30 backdrop-blur-sm border border-[#00b4d8]/10 p-8">
+            <div className="glow-card rounded-2xl bg-monarch/30 backdrop-blur-sm border border-teal/10 p-8">
               {/* Forward-Focused badge */}
               <div className="flex items-center gap-2 mb-4">
-                <Zap className="w-5 h-5 text-[#00b4d8]" />
-                <span className="text-sm font-semibold text-[#98c5ea] uppercase tracking-wider">Forward-Focused</span>
+                <Zap className="w-5 h-5 text-teal" />
+                <span className="text-sm font-semibold text-hudson uppercase tracking-wider">Forward-Focused</span>
               </div>
               
               <p className="text-lg text-white leading-relaxed mb-6">
-                <span className="font-bold text-[#00b4d8]">Cyber AI Competition Unified Platform</span> (CyberCup.AI) is
+                <span className="font-bold text-teal">Cyber AI Competition Unified Platform</span> (CyberCup.AI) is
                 an innovative platform designed and developed at the School of Cybersecurity, Old Dominion University
                 (ODU). CyberCup serves as a unified hub for hosting a diverse range of competitions at the intersection
                 of Cybersecurity and Artificial Intelligence (AI).
               </p>
-              <p className="text-[#98c5ea] leading-relaxed mb-4">
+              <p className="text-hudson leading-relaxed mb-4">
                 In this year's competitions, we have challenges related to security of Large language models (LLM),
                 Model Context Protocol (MCP) and use of AI in Capture the Flag (CTF) competitions. Participants can
                 engage in a variety of challenges including LLM CTF, AI-Assisted CTF, LLM Backdoor attacks, and MCP
@@ -137,18 +137,18 @@ export function About() {
               </p>
               
               {/* Achievement stats */}
-              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-[#00b4d8]/20">
+              <div className="grid grid-cols-3 gap-4 pt-4 border-t border-teal/20">
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#00b4d8] mb-1">3,400+</div>
-                  <div className="text-xs text-[#828a8f]">Participants</div>
+                  <div className="text-2xl font-bold text-teal mb-1">3,400+</div>
+                  <div className="text-xs text-silver">Participants</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#00b4d8] mb-1">5</div>
-                  <div className="text-xs text-[#828a8f]">Tracks</div>
+                  <div className="text-2xl font-bold text-teal mb-1">5</div>
+                  <div className="text-xs text-silver">Tracks</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-[#00b4d8] mb-1">100+</div>
-                  <div className="text-xs text-[#828a8f]">Challenges</div>
+                  <div className="text-2xl font-bold text-teal mb-1">100+</div>
+                  <div className="text-xs text-silver">Challenges</div>
                 </div>
               </div>
             </div>
@@ -159,19 +159,19 @@ export function About() {
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="glow-card rounded-2xl bg-[#043657]/30 backdrop-blur-sm border border-[#00b4d8]/10 overflow-hidden"
+            className="glow-card rounded-2xl bg-monarch/30 backdrop-blur-sm border border-teal/10 overflow-hidden"
           >
-            <div className="p-6 border-b border-[#00b4d8]/20">
+            <div className="p-6 border-b border-teal/20">
               <h3 className="font-display font-bold text-white text-xl">Competition Tracks</h3>
             </div>
-            <div className="divide-y divide-[#00b4d8]/10">
+            <div className="divide-y divide-teal/10">
               {competitions.map((comp, index) => (
                 <motion.div
                   key={comp.name}
                   initial={{ opacity: 0, x: 20 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
-                  className="p-4 hover:bg-[#00b4d8]/5 transition-colors"
+                  className="p-4 hover:bg-teal/5 transition-colors"
                 >
                   <div className="flex items-center justify-between mb-2">
                     <span className="font-semibold text-white">{comp.name}</span>
@@ -189,7 +189,7 @@ export function About() {
                       {comp.level}
                     </span>
                   </div>
-                  <p className="text-sm text-[#828a8f]">{comp.knowledge}</p>
+                  <p className="text-sm text-silver">{comp.knowledge}</p>
                 </motion.div>
               ))}
             </div>

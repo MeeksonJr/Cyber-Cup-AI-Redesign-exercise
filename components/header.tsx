@@ -32,24 +32,24 @@ export function Header() {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled ? "bg-white/95 backdrop-blur-xl border-b border-[#828A8F]/20 shadow-sm" : "bg-transparent"
+        isScrolled ? "bg-white/95 backdrop-blur-xl border-b border-silver/20 shadow-sm" : "bg-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Link href="#home" className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2 rounded-md" aria-label="CyberCup.AI Home">
+            <Link href="#home" className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2 rounded-md" aria-label="CyberCup.AI Home">
               <div className="relative">
-                <div className="w-10 h-10 rounded-lg bg-[#043657] flex items-center justify-center" aria-hidden="true">
+                <div className="w-10 h-10 rounded-lg bg-monarch flex items-center justify-center" aria-hidden="true">
                   <Terminal className="w-5 h-5 text-white" />
                 </div>
-                <div className="absolute -inset-1 bg-[#98C5EA]/20 rounded-lg blur-sm -z-10" aria-hidden="true" />
+                <div className="absolute -inset-1 bg-hudson/20 rounded-lg blur-sm -z-10" aria-hidden="true" />
               </div>
               <span className="font-display font-bold text-xl md:text-2xl tracking-tight">
-                <span className="text-[#043657]">CYBER</span>
-                <span className="text-[#00b4d8]">CUP</span>
-                <span className="text-[#043657]">.AI</span>
+                <span className="text-monarch">CYBER</span>
+                <span className="text-teal">CUP</span>
+                <span className="text-monarch">.AI</span>
               </span>
             </Link>
           </motion.div>
@@ -65,11 +65,11 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className="relative px-4 py-2 text-[#043657] hover:text-[#1a4b8c] font-medium transition-all group focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2 rounded-md"
+                  className="relative px-4 py-2 text-monarch hover:text-ultramarine font-medium transition-all group focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2 rounded-md"
                   aria-label={`Navigate to ${item.name} section`}
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#00b4d8] transition-all group-hover:w-full" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-teal transition-all group-hover:w-full" />
                 </Link>
               </motion.div>
             ))}
@@ -91,7 +91,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-[#043657] hover:bg-[#98C5EA]/20"
+            className="md:hidden text-monarch hover:bg-hudson/20"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
@@ -111,7 +111,7 @@ export function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white/98 backdrop-blur-xl border-t border-[#828A8F]/20 shadow-lg"
+            className="md:hidden bg-white/98 backdrop-blur-xl border-t border-silver/20 shadow-lg"
             aria-label="Mobile navigation"
           >
             <div className="px-4 py-6 space-y-2">
@@ -125,7 +125,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block py-3 px-4 text-[#043657] hover:text-[#1a4b8c] hover:bg-[#98C5EA]/20 rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                    className="block py-3 px-4 text-monarch hover:text-ultramarine hover:bg-hudson/20 rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-teal focus:ring-offset-2"
                     aria-label={`Navigate to ${item.name} section`}
                   >
                     {item.name}

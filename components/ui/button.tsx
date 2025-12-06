@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: 'bg-[#043657] text-white hover:bg-[#1a4b8c] dark:bg-[#043657] dark:text-white dark:hover:bg-[#1a4b8c]',
+        default: 'bg-monarch text-white hover:bg-ultramarine dark:bg-monarch dark:text-white dark:hover:bg-ultramarine',
         destructive:
           'bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60',
         outline:
-          'border border-[#828A8F]/20 bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
+          'border border-silver/20 bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50',
         secondary:
-          'bg-[#98C5EA] text-[#043657] hover:bg-[#98C5EA]/80 dark:bg-[#98C5EA] dark:text-[#043657] dark:hover:bg-[#98C5EA]/80',
+          'bg-hudson text-monarch hover:bg-hudson/80 dark:bg-hudson dark:text-monarch dark:hover:bg-hudson/80',
         ghost:
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
-        link: 'text-[#043657] underline-offset-4 hover:underline dark:text-[#98C5EA]',
+        link: 'text-monarch underline-offset-4 hover:underline dark:text-hudson',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',

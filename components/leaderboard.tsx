@@ -19,7 +19,7 @@ const getRankIcon = (rank: number) => {
   if (rank === 1) return <Crown className="w-5 h-5 text-yellow-400" />
   if (rank === 2) return <Medal className="w-5 h-5 text-gray-300" />
   if (rank === 3) return <Medal className="w-5 h-5 text-amber-600" />
-  return <span className="text-[#828a8f] font-bold">{rank}</span>
+  return <span className="text-silver font-bold">{rank}</span>
 }
 
 const getBadgeColor = (badge: string) => {
@@ -31,7 +31,7 @@ const getBadgeColor = (badge: string) => {
     case "Bronze":
       return "bg-gradient-to-r from-amber-600 to-amber-800 text-white"
     default:
-      return "bg-[#043657] text-white"
+      return "bg-monarch text-white"
   }
 }
 
@@ -43,10 +43,13 @@ export function Leaderboard() {
     <section id="leaderboard" className="py-24 md:py-32 bg-white relative overflow-hidden" ref={ref}>
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, #043657 1px, transparent 0)`,
-          backgroundSize: "40px 40px"
-        }} />
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgb(4, 54, 87) 1px, transparent 0)`,
+            backgroundSize: "40px 40px"
+          }} 
+        />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,15 +60,15 @@ export function Leaderboard() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#98C5EA]/20 border border-[#043657]/20 mb-4">
-            <Trophy className="w-5 h-5 text-[#043657]" />
-            <span className="text-sm font-semibold text-[#043657] uppercase tracking-wider">Live Rankings</span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-hudson/20 border border-monarch/20 mb-4">
+            <Trophy className="w-5 h-5 text-monarch" />
+            <span className="text-sm font-semibold text-monarch uppercase tracking-wider">Live Rankings</span>
           </div>
-          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-[#043657] mb-4">
-            Top <span className="text-[#00b4d8]">Performers</span>
+          <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-monarch mb-4">
+            Top <span className="text-teal">Performers</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-[#043657] to-[#00b4d8] mx-auto rounded-full mb-6" />
-          <p className="text-lg text-[#828a8f] max-w-2xl mx-auto">
+          <div className="w-24 h-1 bg-gradient-to-r from-monarch to-teal mx-auto rounded-full mb-6" />
+          <p className="text-lg text-silver max-w-2xl mx-auto">
             See who's leading the competition and climb the ranks yourself
           </p>
         </motion.div>
@@ -75,10 +78,10 @@ export function Leaderboard() {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="bg-white rounded-[0.625rem] border border-[#828A8F]/20 shadow-lg overflow-hidden"
+          className="bg-white rounded-[0.625rem] border border-silver/20 shadow-lg overflow-hidden"
         >
           {/* Table Header */}
-          <div className="bg-gradient-to-r from-[#043657] to-[#1a4b8c] px-4 sm:px-6 py-4 grid grid-cols-12 gap-2 sm:gap-4 items-center">
+          <div className="bg-gradient-to-r from-monarch to-ultramarine px-4 sm:px-6 py-4 grid grid-cols-12 gap-2 sm:gap-4 items-center">
             <div className="col-span-1 text-center">
               <span className="text-white font-semibold text-xs sm:text-sm">Rank</span>
             </div>
@@ -115,13 +118,13 @@ export function Leaderboard() {
 
                 {/* Participant */}
                 <div className="col-span-5 sm:col-span-4 flex items-center gap-2 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-[#043657] to-[#1a4b8c] flex items-center justify-center text-white font-bold text-xs sm:text-sm">
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-monarch to-ultramarine flex items-center justify-center text-white font-bold text-xs sm:text-sm">
                     {entry.name.split(" ").map(n => n[0]).join("")}
                   </div>
                   <div className="min-w-0 flex-1">
-                    <div className="font-semibold text-[#043657] text-sm sm:text-base truncate">{entry.name}</div>
-                    <div className="text-xs text-[#828a8f] flex items-center gap-1">
-                      <TrendingUp className="w-3 h-3 flex-shrink-0" />
+                    <div className="font-semibold text-monarch text-sm sm:text-base truncate">{entry.name}</div>
+                    <div className="text-xs text-silver flex items-center gap-1">
+                      <TrendingUp className="w-3 h-3 shrink-0" />
                       <span className={entry.change === "new" ? "text-green-600" : entry.change.startsWith("+") ? "text-green-600" : "text-red-500"}>
                         {entry.change}
                       </span>
@@ -131,13 +134,13 @@ export function Leaderboard() {
 
                 {/* Track */}
                 <div className="col-span-3 hidden sm:block">
-                  <span className="text-sm text-[#043657] font-medium">{entry.track}</span>
+                  <span className="text-sm text-monarch font-medium">{entry.track}</span>
                 </div>
 
                 {/* Score */}
                 <div className="col-span-3 sm:col-span-2 text-right">
-                  <div className="font-bold text-[#043657] text-base sm:text-lg">{entry.score.toLocaleString()}</div>
-                  <div className="text-xs text-[#828a8f] hidden sm:block">points</div>
+                  <div className="font-bold text-monarch text-base sm:text-lg">{entry.score.toLocaleString()}</div>
+                  <div className="text-xs text-silver hidden sm:block">points</div>
                 </div>
 
                 {/* Badge */}
@@ -151,11 +154,11 @@ export function Leaderboard() {
           </div>
 
           {/* View All CTA */}
-          <div className="bg-[#f0f4f8] px-6 py-4 text-center border-t border-[#828A8F]/10">
+          <div className="bg-[#f0f4f8] px-6 py-4 text-center border-t border-silver/10">
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
-              className="text-[#043657] font-semibold hover:text-[#00b4d8] transition-colors flex items-center gap-2 mx-auto"
+              className="text-monarch font-semibold hover:text-teal transition-colors flex items-center gap-2 mx-auto"
             >
               View Full Leaderboard
               <TrendingUp className="w-4 h-4" />
@@ -180,13 +183,13 @@ export function Leaderboard() {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.8 + index * 0.1 }}
-              className="bg-white rounded-[0.625rem] border border-[#828A8F]/20 p-6 text-center hover:shadow-lg transition-shadow"
+              className="bg-white rounded-[0.625rem] border border-silver/20 p-6 text-center hover:shadow-lg transition-shadow"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#98C5EA]/20 mb-4">
-                <stat.icon className="w-6 h-6 text-[#043657]" />
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-hudson/20 mb-4">
+                <stat.icon className="w-6 h-6 text-monarch" />
               </div>
-              <div className="text-3xl font-bold text-[#043657] mb-2">{stat.value}</div>
-              <div className="text-sm text-[#828a8f]">{stat.label}</div>
+              <div className="text-3xl font-bold text-monarch mb-2">{stat.value}</div>
+              <div className="text-sm text-silver">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
