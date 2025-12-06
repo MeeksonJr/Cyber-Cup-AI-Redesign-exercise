@@ -39,12 +39,12 @@ export function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-            <Link href="#home" className="flex items-center gap-3">
+            <Link href="#home" className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2 rounded-md" aria-label="CyberCup.AI Home">
               <div className="relative">
-                <div className="w-10 h-10 rounded-lg bg-[#043657] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-lg bg-[#043657] flex items-center justify-center" aria-hidden="true">
                   <Terminal className="w-5 h-5 text-white" />
                 </div>
-                <div className="absolute -inset-1 bg-[#98C5EA]/20 rounded-lg blur-sm -z-10" />
+                <div className="absolute -inset-1 bg-[#98C5EA]/20 rounded-lg blur-sm -z-10" aria-hidden="true" />
               </div>
               <span className="font-display font-bold text-xl md:text-2xl tracking-tight">
                 <span className="text-[#043657]">CYBER</span>
@@ -65,7 +65,8 @@ export function Header() {
               >
                 <Link
                   href={item.href}
-                  className="relative px-4 py-2 text-[#043657] hover:text-[#1a4b8c] font-medium transition-all group"
+                  className="relative px-4 py-2 text-[#043657] hover:text-[#1a4b8c] font-medium transition-all group focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2 rounded-md"
+                  aria-label={`Navigate to ${item.name} section`}
                 >
                   {item.name}
                   <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-[#00b4d8] transition-all group-hover:w-full" />
@@ -92,6 +93,9 @@ export function Header() {
             size="icon"
             className="md:hidden text-[#043657] hover:bg-[#98C5EA]/20"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-menu"
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </Button>
@@ -101,12 +105,14 @@ export function Header() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <motion.nav
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="md:hidden bg-white/98 backdrop-blur-xl border-t border-[#828A8F]/20 shadow-lg"
+            aria-label="Mobile navigation"
           >
             <div className="px-4 py-6 space-y-2">
               {navItems.map((item, index) => (
@@ -119,7 +125,8 @@ export function Header() {
                   <Link
                     href={item.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="block py-3 px-4 text-[#043657] hover:text-[#1a4b8c] hover:bg-[#98C5EA]/20 rounded-lg font-medium transition-all"
+                    className="block py-3 px-4 text-[#043657] hover:text-[#1a4b8c] hover:bg-[#98C5EA]/20 rounded-lg font-medium transition-all focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                    aria-label={`Navigate to ${item.name} section`}
                   >
                     {item.name}
                   </Link>
@@ -138,7 +145,7 @@ export function Header() {
                 </Link>
               </motion.div>
             </div>
-          </motion.div>
+          </motion.nav>
         )}
       </AnimatePresence>
     </motion.header>

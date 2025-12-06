@@ -1,13 +1,17 @@
 "use client"
 
-import { motion, useScroll, useTransform } from "framer-motion"
-import { ArrowRight, Shield, Cpu, Zap } from "lucide-react"
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from "framer-motion"
+import { ArrowRight, Shield, Cpu, Zap, TrendingUp, Users, Award, Sparkles } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useRef } from "react"
+import { useRef, useState, useEffect } from "react"
 
 export function Hero() {
-  const containerRef = useRef(null)
+  const containerRef = useRef<HTMLElement>(null)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
@@ -15,194 +19,359 @@ export function Hero() {
 
   const y = useTransform(scrollYProgress, [0, 1], [0, 200])
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8])
+
+  // Smooth mouse tracking
+  const springConfig = { damping: 25, stiffness: 200 }
+  const mouseXSpring = useSpring(mouseX, springConfig)
+  const mouseYSpring = useSpring(mouseY, springConfig)
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!containerRef.current) return
+      const rect = containerRef.current.getBoundingClientRect()
+      const { clientX, clientY } = e
+      const { left, top, width, height } = rect
+      const x = (clientX - left - width / 2) / width
+      const y = (clientY - top - height / 2) / height
+      mouseX.set(x)
+      mouseY.set(y)
+      setMousePosition({ x: clientX, y: clientY })
+    }
+
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [mouseX, mouseY])
+
+  // Animated counter
+  const AnimatedCounter = ({ value, label, icon: Icon }: { value: string; label: string; icon: any }) => {
+    const [count, setCount] = useState(0)
+    const numValue = parseInt(value.replace(/\D/g, "")) || 0
+
+    useEffect(() => {
+      const duration = 2000
+      const steps = 60
+      const increment = numValue / steps
+      let current = 0
+
+      const timer = setInterval(() => {
+        current += increment
+        if (current >= numValue) {
+          setCount(numValue)
+          clearInterval(timer)
+        } else {
+          setCount(Math.floor(current))
+        }
+      }, duration / steps)
+
+      return () => clearInterval(timer)
+    }, [numValue])
+
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="group relative"
+      >
+        <div className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-[#98C5EA]/20 hover:border-[#00b4d8]/40 transition-all duration-300 hover:bg-white/10">
+          <div className="p-3 rounded-lg bg-gradient-to-br from-[#043657] to-[#1a4b8c] border border-[#00b4d8]/30">
+            <Icon className="w-5 h-5 text-[#98C5EA]" />
+          </div>
+          <div className="text-left">
+            <div className="text-2xl md:text-3xl font-bold text-white font-display">
+              {value.includes("+") ? `${count.toLocaleString()}+` : value}
+            </div>
+            <div className="text-xs md:text-sm text-[#828a8f]">{label}</div>
+          </div>
+        </div>
+        {/* Glow effect on hover */}
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-[#00b4d8]/0 via-[#00b4d8]/10 to-[#00b4d8]/0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-300 -z-10" />
+      </motion.div>
+    )
+  }
 
   return (
     <section
       id="home"
       ref={containerRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#021a2b]"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-[#043657] via-[#021a2b] to-[#011018]"
+      onMouseMove={(e) => {
+        if (!containerRef.current) return
+        const rect = containerRef.current.getBoundingClientRect()
+        mouseX.set((e.clientX - rect.left - rect.width / 2) / rect.width)
+        mouseY.set((e.clientY - rect.top - rect.height / 2) / rect.height)
+      }}
     >
-      {/* Animated cyber grid */}
-      <div className="absolute inset-0 cyber-grid opacity-40" />
-
-      {/* Glowing orbs */}
+      {/* Animated gradient mesh background */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          animate={{
-            x: [0, 100, 0],
-            y: [0, -50, 0],
+          style={{
+            x: useTransform(mouseXSpring, [-0.5, 0.5], [-100, 100]),
+            y: useTransform(mouseYSpring, [-0.5, 0.5], [-100, 100]),
           }}
-          transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00b4d8]/10 rounded-full blur-[100px]"
+          className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-gradient-to-br from-[#00b4d8]/20 via-[#98C5EA]/10 to-[#043657]/30 rounded-full blur-[120px]"
         />
         <motion.div
-          animate={{
-            x: [0, -100, 0],
-            y: [0, 50, 0],
+          style={{
+            x: useTransform(mouseXSpring, [-0.5, 0.5], [100, -100]),
+            y: useTransform(mouseYSpring, [-0.5, 0.5], [100, -100]),
           }}
-          transition={{ duration: 25, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#043657]/30 rounded-full blur-[100px]"
+          className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-[#1a4b8c]/20 via-[#00b4d8]/10 to-[#98C5EA]/20 rounded-full blur-[100px]"
         />
       </div>
 
-      {/* Floating particles */}
+      {/* Animated cyber grid with parallax */}
+      <motion.div
+        style={{
+          opacity: useTransform(scrollYProgress, [0, 0.5], [0.3, 0]),
+          scale: useTransform(scrollYProgress, [0, 1], [1, 1.2]),
+        }}
+        className="absolute inset-0 cyber-grid opacity-30"
+      />
+
+      {/* Floating 3D particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {[...Array(30)].map((_, i) => (
+        {[...Array(50)].map((_, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-[#00b4d8] rounded-full"
+            className="absolute rounded-full"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
+              width: `${2 + Math.random() * 4}px`,
+              height: `${2 + Math.random() * 4}px`,
+              background: `rgba(${Math.random() > 0.5 ? "0, 180, 216" : "152, 197, 234"}, ${0.4 + Math.random() * 0.4})`,
             }}
             animate={{
               y: [-20, 20, -20],
+              x: [-10, 10, -10],
               opacity: [0.2, 0.8, 0.2],
+              scale: [1, 1.2, 1],
             }}
             transition={{
               duration: 3 + Math.random() * 4,
               repeat: Number.POSITIVE_INFINITY,
               delay: Math.random() * 2,
+              ease: "easeInOut",
             }}
           />
         ))}
       </div>
 
-      {/* Main content */}
-      <motion.div style={{ y, opacity }} className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Main content with 3D tilt effect */}
+      <motion.div
+        style={{
+          y,
+          opacity,
+          scale,
+          rotateX: useTransform(mouseYSpring, [-0.3, 0.3], [5, -5]),
+          rotateY: useTransform(mouseXSpring, [-0.3, 0.3], [-5, 5]),
+        }}
+        className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full"
+      >
         <div className="text-center">
-          {/* Badge */}
+          {/* Live badge with pulse */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#043657]/50 border border-[#00b4d8]/30 mb-8"
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, type: "spring" }}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#043657]/80 to-[#1a4b8c]/80 backdrop-blur-md border border-[#00b4d8]/40 mb-8 shadow-lg shadow-[#00b4d8]/20"
           >
-            <span className="relative flex h-2 w-2">
+            <span className="relative flex h-2.5 w-2.5">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00f0ff] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#00b4d8]"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00b4d8]"></span>
             </span>
-            <span className="text-[#98c5ea] text-sm font-medium">2025 Competition Season Now Open</span>
+            <span className="text-[#98c5ea] text-sm font-semibold">2025 Competition Season Now Open</span>
+            <Sparkles className="w-4 h-4 text-[#00b4d8]" />
           </motion.div>
 
-          {/* Main Title */}
+          {/* Main Title with gradient text and glow */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-display text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight mb-6"
+            className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight mb-6 leading-none px-4"
           >
-            <span className="block text-white">
-              CYBER
-              <span className="text-[#00b4d8]">CUP</span>
-              <span className="text-[#00f0ff] glow-text">.AI</span>
+            <span className="block">
+              <motion.span
+                className="inline-block bg-gradient-to-r from-white via-[#98C5EA] to-white bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0%", "100%", "0%"],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "linear",
+                }}
+                style={{
+                  backgroundSize: "200% 100%",
+                }}
+              >
+                CYBER
+              </motion.span>
+              <motion.span
+                className="inline-block bg-gradient-to-r from-[#00b4d8] via-[#00f0ff] to-[#00b4d8] bg-clip-text text-transparent ml-2"
+                animate={{
+                  filter: [
+                    "drop-shadow(0 0 10px rgba(0, 180, 216, 0.5))",
+                    "drop-shadow(0 0 20px rgba(0, 240, 255, 0.8))",
+                    "drop-shadow(0 0 10px rgba(0, 180, 216, 0.5))",
+                  ],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              >
+                CUP
+              </motion.span>
+              <motion.span
+                className="inline-block text-[#00f0ff] ml-2"
+                animate={{
+                  filter: [
+                    "drop-shadow(0 0 5px rgba(0, 240, 255, 0.5))",
+                    "drop-shadow(0 0 15px rgba(0, 240, 255, 1))",
+                    "drop-shadow(0 0 5px rgba(0, 240, 255, 0.5))",
+                  ],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Number.POSITIVE_INFINITY,
+                  ease: "easeInOut",
+                }}
+              >
+                .AI
+              </motion.span>
             </span>
           </motion.h1>
 
-          {/* Updated subtitle */}
+          {/* Subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl md:text-2xl text-[#98c5ea] font-medium mb-2"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#98c5ea] font-semibold mb-3 px-4"
           >
-            Cyber AI Competition Unified Platform (CUP)
+            Cyber AI Competition Unified Platform
           </motion.p>
 
-          {/* Forward-Focused tagline */}
+          {/* Forward-Focused badge with animation */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.45 }}
-            className="mb-4"
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#043657]/30 border border-[#98c5ea]/30 text-[#98c5ea] text-sm font-semibold uppercase tracking-wider">
-              <ArrowRight className="w-4 h-4" />
-              Forward-Focused
-            </span>
-          </motion.div>
-
-          {/* Updated description */}
-          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-lg text-[#828a8f] max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="mb-6"
           >
-            Empowering the next generation of CyberAI professionals through innovative competitions and hands-on
-            learning experiences. Shaping tomorrow's solutions today.
-          </motion.p>
+            <motion.span
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#043657]/40 to-[#1a4b8c]/40 backdrop-blur-md border border-[#98c5ea]/40 text-[#98c5ea] text-sm font-bold uppercase tracking-wider"
+              whileHover={{ scale: 1.05, borderColor: "#00b4d8" }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
+              <motion.div
+                animate={{ x: [0, 3, 0] }}
+                transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
+              >
+                <ArrowRight className="w-4 h-4" />
+              </motion.div>
+              Forward-Focused
+            </motion.span>
+          </motion.div>
 
-          {/* Stats */}
-          <motion.div
+          {/* Description */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.6 }}
-            className="flex flex-wrap justify-center gap-8 mb-12"
+            className="text-lg md:text-xl text-[#828a8f] max-w-3xl mx-auto mb-12 leading-relaxed"
           >
-            {[
-              { icon: Shield, value: "5", label: "Competition Tracks" },
-              { icon: Cpu, value: "AI", label: "Powered Challenges" },
-              { icon: Zap, value: "ODU", label: "Hosted Platform" },
-            ].map((stat, index) => (
-              <div key={index} className="flex items-center gap-3">
-                <div className="p-2 rounded-lg bg-[#043657]/50 border border-[#00b4d8]/20">
-                  <stat.icon className="w-5 h-5 text-[#00b4d8]" />
-                </div>
-                <div className="text-left">
-                  <div className="text-2xl font-bold text-white">{stat.value}</div>
-                  <div className="text-sm text-[#828a8f]">{stat.label}</div>
-                </div>
-              </div>
-            ))}
-          </motion.div>
+            Empowering the next generation of CyberAI professionals through innovative competitions and hands-on
+            learning experiences. <span className="text-[#98c5ea] font-semibold">Shaping tomorrow's solutions today.</span>
+          </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Animated Stats Grid */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12 max-w-4xl mx-auto"
           >
-            <Link href="#competitions">
-              <Button
-                size="lg"
-                className="px-8 py-6 text-lg font-bold shadow-lg shadow-[#043657]/25 hover:shadow-[#043657]/50 transition-all group"
-              >
-                Explore Competitions
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+            <AnimatedCounter value="3400+" label="Active Participants" icon={Users} />
+            <AnimatedCounter value="5" label="Competition Tracks" icon={Shield} />
+            <AnimatedCounter value="100+" label="Challenges" icon={Award} />
+          </motion.div>
+
+          {/* CTA Buttons with enhanced styling */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
+          >
+            <Link href="#competitions" aria-label="Navigate to competitions section">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  size="lg"
+                  className="px-10 py-7 text-lg font-bold shadow-2xl shadow-[#043657]/50 hover:shadow-[#00b4d8]/30 transition-all group relative overflow-hidden focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                >
+                  <span className="relative z-10 flex items-center gap-2">
+                    Explore Competitions
+                    <motion.div
+                      animate={{ x: [0, 4, 0] }}
+                      transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
+                      aria-hidden="true"
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </motion.div>
+                  </span>
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-[#1a4b8c] to-[#00b4d8] opacity-0 group-hover:opacity-100 transition-opacity"
+                    initial={false}
+                    aria-hidden="true"
+                  />
+                </Button>
+              </motion.div>
             </Link>
-            <Link href="#about">
-              <Button
-                size="lg"
-                variant="secondary"
-                className="px-8 py-6 text-lg font-semibold"
-              >
-                Learn More
-              </Button>
+            <Link href="#about" aria-label="Navigate to about section">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button
+                  size="lg"
+                  variant="secondary"
+                  className="px-10 py-7 text-lg font-semibold border-2 focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                >
+                  Learn More
+                </Button>
+              </motion.div>
             </Link>
           </motion.div>
 
-          {/* Hosted by badge - Enhanced ODU branding */}
+          {/* Enhanced ODU Branding */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
-            className="mt-16 flex flex-col items-center justify-center gap-4"
+            className="flex flex-col items-center justify-center gap-4"
           >
             <div className="flex items-center justify-center gap-4">
-              <span className="text-sm text-[#828a8f] uppercase tracking-wider">Hosted by</span>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#043657]/30 border border-[#98c5ea]/20">
+              <span className="text-sm text-[#828a8f] uppercase tracking-wider font-medium">Hosted by</span>
+              <motion.div
+                className="flex items-center gap-3 px-5 py-3 rounded-xl bg-gradient-to-r from-[#043657]/40 to-[#1a4b8c]/40 backdrop-blur-md border border-[#98c5ea]/30 shadow-lg"
+                whileHover={{ scale: 1.05, borderColor: "#00b4d8" }}
+                transition={{ type: "spring", stiffness: 400 }}
+              >
                 <img
                   src="https://cybercup.ai/_astro/odu-cs-logo.BdiMY8SH_1eMPNU.webp"
-                  alt="ODU School of Cybersecurity"
-                  className="h-10 object-contain brightness-0 invert opacity-90"
+                  alt="Old Dominion University School of Cybersecurity logo"
+                  className="h-12 object-contain brightness-0 invert opacity-90"
+                  loading="lazy"
+                  width="48"
+                  height="48"
                 />
-                <span className="text-sm text-[#98c5ea] font-medium">ODU School of Cybersecurity</span>
-              </div>
+                <span className="text-sm text-[#98c5ea] font-semibold">ODU School of Cybersecurity</span>
+              </motion.div>
             </div>
-            <p className="text-xs text-[#828a8f] max-w-md text-center">
+            <p className="text-xs text-[#828a8f] max-w-md text-center leading-relaxed">
               Old Dominion University - Leading innovation in cybersecurity education and research
             </p>
           </motion.div>
@@ -210,24 +379,24 @@ export function Hero() {
       </motion.div>
 
       {/* Bottom gradient fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#021a2b] to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#011018] via-[#021a2b]/50 to-transparent pointer-events-none" />
 
-      {/* Scroll indicator */}
+      {/* Enhanced scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
       >
         <motion.div
-          animate={{ y: [0, 8, 0] }}
+          animate={{ y: [0, 10, 0] }}
           transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-          className="w-6 h-10 rounded-full border-2 border-[#00b4d8]/50 flex justify-center pt-2"
+          className="w-7 h-12 rounded-full border-2 border-[#00b4d8]/60 flex justify-center pt-3 backdrop-blur-sm bg-[#043657]/20"
         >
           <motion.div
-            animate={{ opacity: [0.3, 1, 0.3] }}
+            animate={{ opacity: [0.3, 1, 0.3], y: [0, 4, 0] }}
             transition={{ duration: 1.5, repeat: Number.POSITIVE_INFINITY }}
-            className="w-1 h-2 bg-[#00b4d8] rounded-full"
+            className="w-1.5 h-3 bg-[#00b4d8] rounded-full"
           />
         </motion.div>
       </motion.div>

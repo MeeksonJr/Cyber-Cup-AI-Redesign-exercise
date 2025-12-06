@@ -72,8 +72,11 @@ export function Sponsors() {
               <div className="w-20 h-20 md:w-28 md:h-28 flex items-center justify-center mb-4 relative">
                 <img
                   src={sponsor.logo || "/placeholder.svg"}
-                  alt={sponsor.name}
+                  alt={`${sponsor.name} logo${sponsor.subtitle ? ` - ${sponsor.subtitle}` : ""}`}
                   className="max-w-full max-h-full object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                  loading="lazy"
+                  width="112"
+                  height="112"
                 />
               </div>
               <h3 className="font-semibold text-white text-sm md:text-base mb-1">{sponsor.name}</h3>

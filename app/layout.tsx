@@ -73,6 +73,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {/* Preconnect to external domains for performance */}
+        <link rel="preconnect" href="https://cybercup.ai" />
+        {/* Meta tags for better mobile experience */}
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      </head>
       <body className={`${sora.variable} ${montserrat.variable} font-sans antialiased`}>
         {children}
         <Analytics />

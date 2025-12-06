@@ -57,7 +57,8 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 rounded-lg bg-[#043657]/50 border border-[#00b4d8]/20 flex items-center justify-center text-[#98c5ea] hover:text-[#00b4d8] hover:border-[#00b4d8]/50 transition-all"
+                className="w-10 h-10 rounded-lg bg-[#043657]/50 border border-[#00b4d8]/20 flex items-center justify-center text-[#98c5ea] hover:text-[#00b4d8] hover:border-[#00b4d8]/50 transition-all focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                aria-label="Follow ODU Cybersecurity on Instagram"
               >
                 <Instagram className="w-5 h-5" />
               </motion.a>
@@ -66,7 +67,8 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1, y: -2 }}
-                className="w-10 h-10 rounded-lg bg-[#043657]/50 border border-[#00b4d8]/20 flex items-center justify-center text-[#98c5ea] hover:text-[#00b4d8] hover:border-[#00b4d8]/50 transition-all"
+                className="w-10 h-10 rounded-lg bg-[#043657]/50 border border-[#00b4d8]/20 flex items-center justify-center text-[#98c5ea] hover:text-[#00b4d8] hover:border-[#00b4d8]/50 transition-all focus:outline-none focus:ring-2 focus:ring-[#00b4d8] focus:ring-offset-2"
+                aria-label="Follow ODU School of Cybersecurity on LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </motion.a>
@@ -121,8 +123,11 @@ export function Footer() {
             <div className="mt-6">
               <img
                 src="https://cybercup.ai/_astro/odu-cs-logo.BdiMY8SH_1eMPNU.webp"
-                alt="ODU School of Cybersecurity"
+                alt="Old Dominion University School of Cybersecurity logo"
                 className="h-12 object-contain opacity-60"
+                loading="lazy"
+                width="48"
+                height="48"
               />
             </div>
           </motion.div>

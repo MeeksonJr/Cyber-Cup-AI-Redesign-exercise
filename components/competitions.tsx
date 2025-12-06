@@ -113,7 +113,7 @@ function CompetitionCard({
 
       {/* Content */}
       <div
-        className={`relative z-10 p-6 md:p-8 h-full flex flex-col ${index === 0 ? "min-h-[400px]" : "min-h-[200px]"}`}
+        className={`relative z-10 p-4 sm:p-6 md:p-8 h-full flex flex-col ${index === 0 ? "min-h-[350px] sm:min-h-[400px]" : "min-h-[180px] sm:min-h-[200px]"}`}
       >
         <div className="flex items-start justify-between mb-4">
           <motion.div
@@ -213,7 +213,7 @@ export function Competitions() {
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           {competitions.map((comp, index) => (
             <CompetitionCard key={comp.title} competition={comp} index={index} isInView={isInView} />
           ))}
